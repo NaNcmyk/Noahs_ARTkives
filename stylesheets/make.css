@@ -1,0 +1,334 @@
+.main-wrapper {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* -------------landing page---------------- */
+.landing-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(/assets/make/white-room.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    opacity: 1;
+    transition: opacity 3s ease-out;
+    z-index: 100;
+}
+
+.landing-page.disappear {
+    opacity: 0;
+}
+
+.landing-page p {
+    color: var(--black);
+    font-size: 1.4rem;
+    line-height: .6;
+    text-align: center;
+}
+
+.landing-page p:nth-of-type(2n) {
+    margin-top: .6rem;
+    font-family: 'Vibur', sans-serif;
+}
+
+.landing-page-btn {
+    background: var(--white);
+    color: var(--black);
+    border: 0;
+    margin-top: 2rem;
+    padding: .4rem 2rem;
+    font-size: 1.4rem;
+    border-radius: 45% 55% 70% 30% / 30% 49% 51% 70%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .6);
+    transition: border-radius 1s ease-in;
+}
+
+.landing-page-btn:hover {
+    padding: .6rem 2rem;
+    background: linear-gradient(20deg, var(--yellow), var(--green), #77a1d3, #79cbca, var(--pink));
+    border-radius: 26% 74% 13% 87% / 63% 67% 33% 37%;
+    animation: rainbow 1.5s ease-in infinite;
+}
+
+@keyframes rainbow {
+    to {
+        background-position: 15em;
+    }
+}
+
+.landing-page-btn:focus {
+    outline: 0;
+}
+
+.landing-page-btn:active {
+    transform: scale(.98);
+}
+
+/* -----------hidden menu buttons----------- */
+header {
+    opacity: 0;
+    transition: opacity .8s ease-in;
+}
+
+header:hover {
+    background: linear-gradient(to bottom, #f2f2f2, #dbdbdb, #eaeaea, var(--white));
+    opacity: .6;
+}
+ 
+/* undo hover effects when menu active  */
+.menu.active + header {
+    opacity: 1;
+}
+
+.menu.active + header:hover {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+}
+
+/* -----------------canvas---------------------- */
+.canvas-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#draw {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* ----------------toolbox---------------------- */
+.toolbox {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 0;
+    height: 100vh;
+    background: linear-gradient(20deg, #f2f2f2, #dbdbdb, #eaeaea, var(--white));
+    opacity: 0;
+    transition: opacity 4s ease-in; 
+}
+
+.toolbox.active {
+    opacity: 1;
+}
+
+.toolbox .fas {
+    color: var(--black);
+    padding: 1rem 1.2rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.toolbox .fas:last-child {
+    padding-bottom: 1.5rem;
+}
+
+.toolbox:hover {
+    cursor: none;
+}
+
+/* toolbox buttons */
+.toolbox .fas:hover, 
+.toolbox .fa-paw.active:hover {
+    background: linear-gradient(45deg, var(--yellow), var(--pink));
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.toolbox .fa-paw.active, 
+.toolbox .fa-mortar-pestle.active,
+.toolbox .fas:active {
+    background: var(--green);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.browser-ext-div {
+    display: flex;
+    position: relative;
+    background-color: transparent;
+    /* width: 10%;
+    height: 10%; */
+}
+
+i .fa-puzzle-piece {
+    /* position: absolute; */
+}
+
+.badge {
+    position: absolute;
+    top: 2.5em;
+    left: 4.5em;
+    margin: 0;
+    font-size: .4em;
+    color: var(--white);
+    background-color: var(--pink);
+    text-decoration: none;
+}
+
+/* blend mode picker */
+.blendmode-modal-backdrop {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 1000;
+    display: none;
+}
+
+.blendmode-modal-backdrop.active {
+    display: block;
+}
+
+#blendmode-modal {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-content: center;
+    align-items: center;
+    justify-items: start;
+    gap: .8rem;
+    position: absolute;
+    bottom: 4.7rem;
+    left: 5rem;
+    background-color: var(--green);
+    background: linear-gradient(to right, var(--green), var(--white));
+    padding: 2rem 2rem;
+    border: var(--black) dashed 2px;
+}
+
+.blendmode-list-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* reorder blend mode list alphabetically by column */
+.blendmode-list-item:nth-of-type(8n+1) {
+    grid-row: 1;
+}
+
+.blendmode-list-item:nth-of-type(8n+2) {
+    grid-row: 2;
+}
+
+.blendmode-list-item:nth-of-type(8n+3) {
+    grid-row: 3;
+}
+
+.blendmode-list-item:nth-of-type(8n+4) {
+    grid-row: 4;
+}
+
+/* remove native radio button style */
+.blendmode-list-item input {
+    display: none;
+    outline: 0;
+}
+
+.blendmode-list-item label {
+    color: var(--black);
+    font-size: .8rem;
+}
+
+/* custom radio button styles */
+.blendmode-list-item input + label:before,  
+.blendmode-list-item input:not(:checked) + label:before {
+    content: "⬜ ";
+    width: .8rem;
+    height: .8rem;
+    cursor: pointer;
+}
+
+.blendmode-list-item input:checked + label:before {
+    content: "🐽 ";
+}
+
+/* paw print pulse animation */
+#pawsify {
+    position: absolute;
+    transform: translate(-50%, -50%) scale(0);
+    animation: pulse 0.6s linear;
+    z-index: 1000;
+}
+
+@keyframes pulse {
+    to {
+        transform: translate(-50%, -50%) scale(5);
+        opacity: 0;
+    }
+}
+
+/* -----------------------media queries------------------------- */
+@media (max-width: 799px) {
+    header {
+        padding: 2rem 2rem 0;
+    }
+    .landing-page p {
+        line-height: 1;
+    }
+    .toolbox {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        height: 6%;
+        padding-bottom: 3.5rem;
+        left: 0;
+        bottom: 0;
+    }
+    .toolbox .fas {
+        font-size: 1.5rem;
+        padding: 1rem .8rem;
+    }
+    .toolbox .fas:first-child {
+        padding-left: 1.6rem;
+    }
+    #blendmode-modal {
+        bottom: 4rem;
+        left: 1rem;
+    }
+    .badge {
+        font-size: .3em;
+        top: 3.5em;
+        left: 6.5em;
+    }
+}
+
+@media (max-width: 551px) {
+    .menu li {
+        margin: 1.7rem 0;
+    }
+    .menu li a {
+        padding: .6rem;
+        font-size: 1rem;
+    }
+    .landing-page p,
+    .landing-page-btn {
+        font-size: 1.2rem;
+    }
+    #blendmode-modal {
+        bottom: 4rem;
+        left: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+        background: linear-gradient(to top, var(--green), var(--white));
+    }
+}

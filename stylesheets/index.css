@@ -1,0 +1,268 @@
+body {
+    overflow-y: hidden;
+}
+
+.main-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 4rem;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* logo */
+.main-div .logo-span {
+    display: flex;
+}
+
+.main-div .logo-span .spaceship {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 60px;
+    height: 60px;
+    opacity: 0;
+    transform: scale(0.4);
+}
+
+.logo-span .spaceship p {
+    padding-top: .8rem;
+    color: var(--black);
+    font-size: 1rem;
+}
+
+.logo-span:hover .spaceship:hover {
+    transition: transform 2s ease-in opacity 1s ease-in;
+    animation: hover 6s infinite;
+}
+
+@keyframes hover {
+    0% {
+        transform: translate(-6px);
+        opacity: 0;
+    }
+    20% {
+        transform: translate(80px, 80px);
+        opacity: 1;
+    }
+    40% {
+        transform: translate(70px, 60px);
+        opacity: 1;
+    }
+    60% {
+        transform: translate(100px, 80px);
+        opacity: 1;
+    }
+    80% {
+        transform: translate(80px, -10px);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(180px, -30px) translateY(160px);
+    }
+} 
+
+/* video background */
+.main-div video {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+    opacity: 0.5;
+}
+
+.main-div .overlay {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background-image: url(https://source.unsplash.com/random/?animals);
+    /* background-image: url(/assets/index/tiger.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: hue;
+    opacity: 0.5;
+}
+
+.text-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 550px;
+    z-index: 2;
+}
+
+.text-container h2 {
+    font-family: 'Black And White Picture', sans-serif;
+    font-size: 7rem;
+    font-weight: bold;
+    color: var(--black);
+}
+
+.text-container span {
+    color: var(--yellow);
+    font-family: 'Black And White Picture', sans-serif;
+    text-shadow: 2px 7px 1px var(--black);
+    letter-spacing: 5px;
+}
+
+.text-container p {
+    color: var(--black);
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.text-container button {
+    position: absolute;
+    top: 112%;
+    background-color: var(--yellow);
+    color: var(--black);
+    padding: .4em 1em;
+    margin-top: 1.2rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.8);
+    transition: background-color .8s ease-in, border-radius 1s ease-in, letter-spacing 1s ease-out;
+    cursor: pointer;
+}
+
+.text-container button:hover,
+.text-container button:focus {
+    background-color: var(--black);
+    color: var(--yellow);
+    border-radius: 50% 20% / 10% 40%;
+    letter-spacing: 5px;
+}
+
+.text-container button:active {
+    background: linear-gradient(45deg, var(--yellow), var(--pink));     
+    color: var(--black);
+    transform: scale(0.98);
+}
+
+/* custom tooltip: https://www.w3schools.com/css/css_tooltip.asp */
+.tooltip {
+    position: relative;
+    margin-top: 2rem;
+}
+
+.tooltip img {
+    width: 80%;
+    height: 80%;
+    margin: .6rem .5rem;
+    border-radius: 6px;
+}
+
+.tooltip span {
+    position: absolute;
+    top: 70%;
+    left: 20%;
+    width: 70%;
+    background-color: var(--black);
+    color: var(--white);
+    font-size: .9rem;
+    font-family: 'Syne Mono', monospace;
+    text-align: center;
+
+}
+
+.tooltip .tooltip-content {
+    position: absolute;
+    padding: 5px 0;
+    width: 130px;
+    top: -10px;
+    left: 130%;
+    margin-left: -60px; 
+    border-radius: 6px;
+    background-color: var(--yellow);
+    color: var(--black);
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in; 
+    z-index: 1;
+}
+
+/* left-pointing tooltip arrow */
+.tooltip .tooltip-content::after {
+    content: "";
+    position: absolute;
+    top: 17%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent var(--yellow) transparent transparent;
+}
+  
+.tooltip:hover .tooltip-content {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* media queries
+/* small screens */ 
+@media (max-width: 650px) {
+    .main-div {
+        padding: 0 1.5rem;
+    }
+    header {
+        padding: 1.8rem 1.3rem 0;
+    }
+    .text-container h2 {
+        font-size: 4.2rem;
+    }
+    .text-container p {
+        font-size: 1rem;
+    }    
+    .text-container button {
+        font-size: 1rem;
+    }
+}
+
+/* extra-small screens */
+@media (max-width: 390px) {
+    .menu li {
+        margin: 1.7rem 0;
+    }
+    .menu li a {
+        padding: .6rem;
+        font-size: 1rem;
+    }
+    .main-div {
+        padding: 0 1.5rem;
+    }
+    header {
+        padding: 1.8rem 1.3rem 0;
+    }
+    .text-container h2 {
+        font-size: 3rem;
+    }
+    .text-container p {
+        font-size: .8rem;
+        margin: .6rem 0 0;
+    }    
+    .text-container button {
+        font-size: .8rem;
+    }
+    .tooltip {
+        margin-top: .8rem;
+    }
+    .tooltip .tooltip-content {
+        left: 150%;
+    }
+}

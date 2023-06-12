@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet"> 
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Vibur&display=swap" rel="stylesheet">  -->
+        <!-- font awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"> 
+        
+        <!-- custom stylesheets -->
+        <link rel="stylesheet" href="/stylesheets/styles.css">
+        <link rel="stylesheet" href="/stylesheets/index.css">
+
+        <!-- favicon -->
+        <link rel="icon" href="/assets/all/logo.png">
+
+        <title>Noah's ARTkives</title>
+    </head>
+    <body>
+        <nav class="menu">
+            <ul>
+                <li><a href="/see.html">👁️‍🗨️ see</a></li>
+                <li><a href="/learn.html">📺 learn</a></li>
+                <li><a href="/make.html">🎨 make</a></li>
+            </ul>
+            <div class="blob"></div>
+        </nav>
+
+        <main class="main-div">
+            <header>
+                <span class="logo-span">
+                    <img src="/assets/all/logo.png" alt="logo">
+                    <span class="spaceship">
+                        <img src="/assets/index/spaceship.png" alt="spaceship">
+                        <p>Noah's ARTkives</p>
+                    </span>
+                </span>
+                <button class="toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </header>
+
+            <video src="/assets/index/paint.mp4" autoplay muted loop></video>
+            <div class="overlay"></div>
+            <div class="text-container">
+                <h2>wild at <span>art</span></h2>
+                <p class="text">
+                    Awaken your inner Mootisse.<br>
+                    Free your inner Vincent van Goat.<br>
+                    Supercharge your inner Pigcasso.<br> 
+                    Eye of the tiger. Rawr.<br>
+                </p>
+
+                <div class="tooltip">
+                    <button type="button" onclick="location.href='/see.html'">
+                        <span class="tooltip-content">
+                            <img src="assets/index/dali_and_ocelot.jpg" alt="Salvador Dali and ocelot">
+                            <span>meow.</span>
+                        </span>
+                        enter gallery
+                    </button>
+                </div>
+
+            </div>
+            
+        </main>   
+    
+        <script src="/scripts/nav.js"></script>
+
+    </body>
+</html>

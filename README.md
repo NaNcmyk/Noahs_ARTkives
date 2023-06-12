@@ -1,5 +1,8 @@
 # 🖼️ Noah's ARTkives
-### **Video Demo**: [Noah's ARTkives](https://youtu.be/EAjCOWcYDeg)
+### **Demos**: 
+1. Video demo [here](https://youtu.be/EAjCOWcYDeg).
+2. Live demo [here](https://noahs-artkives.vercel.app/).
+
 ### **Description**: 
 Noah's ARTkives is an interactive art gallery website that showcases paintings by the animal queendom's foremost visionaries--yes, modern-day Pigcassos and Vincent van Goats!--whose repertoire bears 🐻🐻‍❄️🐼 uncanny resemblance to the abstract expressionist paintings of [Jackson Pollock](https://en.wikipedia.org/wiki/Jackson_Pollock), [Willem de Kooning](https://en.wikipedia.org/wiki/Willem_de_Kooning), and [Franz Kline](https://en.wikipedia.org/wiki/Franz_Kline). (Artifice? or arti- _fact_? Hmmm... 🤔 You decide.) 
 

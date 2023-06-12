@@ -260,11 +260,11 @@ In `<link>` tag order, in the `<head>` section of the _.html_ pages:
 
 1. 📅 **_copyright.js_**
 
-    This script simply provides the footer of both _see.html_ and _learn.html_ with its display text, which includes a dynamically generated copyright year.
+    This script simply provides the footer of both _see.html_ and _learn.html_ with their display text, which includes a dynamically generated copyright year.
 
 ---
 ## **Noah's art-X-tension 🧪**
 
-The [artXtension](https://github.com/NaNcmyk/artXtension) now has its own repo. See *Installation* section of README.md for instructions on how to manually install the extension in developer mode.
+The [artXtension](https://github.com/NaNcmyk/artXtension) now has its own repo. See *Installation* section of artXtension's README.md for instructions on how to manually install the extension in developer mode.
 
-The code for this extension is also accessible via the puzzle (browser extension) icon link on _make.html_'s toolbar--this is the (temporary) point of access to the browser extension for users navigating the site. (IRL, for easy download, this link would take the user directly to the extension's page on either Chrome Web Store or Firefox Browser Add-Ons, depending on the user's browser.)
+The code for this extension is also accessible via the puzzle (browser extension) icon link on _make.html_'s toolbar--this is the (temporary) point of access to the browser extension for users navigating the site. (IRL, for easy download, this link would take the user directly to the extension's page on either [*Chrome Web Store*](https://chrome.google.com/webstore/category/extensions?hl=en) or [*Firefox Browser Add-Ons*](https://addons.mozilla.org/en-US/firefox/extensions/), depending on the user's browser.)

@@ -84,13 +84,13 @@ header:hover {
     background: linear-gradient(to bottom, #f2f2f2, #dbdbdb, #eaeaea, var(--white));
     opacity: .6;
 }
- 
+
 /* undo hover effects when menu active  */
-.menu.active + header {
+.menu.active+header {
     opacity: 1;
 }
 
-.menu.active + header:hover {
+.menu.active+header:hover {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
 }
 
@@ -103,13 +103,14 @@ header:hover {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    /* disable browser handling of all panning and zooming gestures */
+    touch-action: none;
 }
 
 #draw {
     position: absolute;
     top: 0;
     left: 0;
-    touch-action: none;
 }
 
 /* ----------------toolbox---------------------- */
@@ -122,7 +123,7 @@ header:hover {
     height: 100vh;
     background: linear-gradient(20deg, #f2f2f2, #dbdbdb, #eaeaea, var(--white));
     opacity: 0;
-    transition: opacity 4s ease-in; 
+    transition: opacity 4s ease-in;
 }
 
 .toolbox.active {
@@ -145,7 +146,7 @@ header:hover {
 }
 
 /* toolbox buttons */
-.toolbox .fas:hover, 
+.toolbox .fas:hover,
 .toolbox .fa-paw.active:hover {
     background: linear-gradient(45deg, var(--yellow), var(--pink));
     color: transparent;
@@ -153,7 +154,7 @@ header:hover {
     -webkit-background-clip: text;
 }
 
-.toolbox .fa-paw.active, 
+.toolbox .fa-paw.active,
 .toolbox .fa-mortar-pestle.active,
 .toolbox .fas:active {
     background: var(--green);
@@ -166,12 +167,6 @@ header:hover {
     display: flex;
     position: relative;
     background-color: transparent;
-    /* width: 10%;
-    height: 10%; */
-}
-
-i .fa-puzzle-piece {
-    /* position: absolute; */
 }
 
 .badge {
@@ -251,15 +246,15 @@ i .fa-puzzle-piece {
 }
 
 /* custom radio button styles */
-.blendmode-list-item input + label:before,  
-.blendmode-list-item input:not(:checked) + label:before {
+.blendmode-list-item input+label:before,
+.blendmode-list-item input:not(:checked)+label:before {
     content: "⬜ ";
     width: .8rem;
     height: .8rem;
     cursor: pointer;
 }
 
-.blendmode-list-item input:checked + label:before {
+.blendmode-list-item input:checked+label:before {
     content: "🐽 ";
 }
 
@@ -283,9 +278,11 @@ i .fa-puzzle-piece {
     header {
         padding: 2rem 2rem 0;
     }
+
     .landing-page p {
         line-height: 1;
     }
+
     .toolbox {
         flex-direction: row;
         justify-content: flex-start;
@@ -296,17 +293,21 @@ i .fa-puzzle-piece {
         left: 0;
         bottom: 0;
     }
+
     .toolbox .fas {
         font-size: 1.5rem;
         padding: 1rem .8rem;
     }
+
     .toolbox .fas:first-child {
         padding-left: 1.6rem;
     }
+
     #blendmode-modal {
         bottom: 4rem;
         left: 1rem;
     }
+
     .badge {
         font-size: .3em;
         top: 3.5em;
@@ -318,14 +319,17 @@ i .fa-puzzle-piece {
     .menu li {
         margin: 1.7rem 0;
     }
+
     .menu li a {
         padding: .6rem;
         font-size: 1rem;
     }
+
     .landing-page p,
     .landing-page-btn {
         font-size: 1.2rem;
     }
+
     #blendmode-modal {
         bottom: 4rem;
         left: 1rem;

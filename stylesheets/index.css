@@ -48,43 +48,48 @@ body {
         transform: translate(-6px);
         opacity: 0;
     }
+
     20% {
         transform: translate(80px, 80px);
         opacity: 1;
     }
+
     40% {
         transform: translate(70px, 60px);
         opacity: 1;
     }
+
     60% {
         transform: translate(100px, 80px);
         opacity: 1;
     }
+
     80% {
         transform: translate(80px, -10px);
         opacity: 1;
     }
+
     100% {
         transform: translate(180px, -30px) translateY(160px);
     }
-} 
+}
 
 /* video background */
 .main-div video {
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     opacity: 0.5;
 }
 
 .main-div .overlay {
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
     background-image: url(https://source.unsplash.com/random/?animals);
     /* background-image: url(/assets/index/tiger.jpg); */
@@ -99,6 +104,9 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.2em;
     max-width: 550px;
     z-index: 2;
 }
@@ -121,7 +129,7 @@ body {
     color: var(--black);
     font-size: 1.5rem;
     font-weight: bold;
-    line-height: 1.4;
+    line-height: 1.8;
 }
 
 .text-container button {
@@ -129,14 +137,13 @@ body {
     top: 112%;
     background-color: var(--yellow);
     color: var(--black);
-    padding: .4em 1em;
-    margin-top: 1.2rem;
-    border-radius: 8px;
+    padding: 1em;
+    border-radius: 54% 46% 70% 30% / 30% 49% 51% 70%;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.8);
-    transition: background-color .8s ease-in, border-radius 1s ease-in, letter-spacing 1s ease-out;
+    transition: background-color .8s ease-in, border-radius 1s ease-in-out, letter-spacing 1s ease-out;
     cursor: pointer;
 }
 
@@ -144,12 +151,12 @@ body {
 .text-container button:focus {
     background-color: var(--black);
     color: var(--yellow);
-    border-radius: 50% 20% / 10% 40%;
-    letter-spacing: 5px;
+    border-radius: 82% 18% 70% 30% / 46% 49% 51% 54%;
+    letter-spacing: 3px;
 }
 
 .text-container button:active {
-    background: linear-gradient(45deg, var(--yellow), var(--pink));     
+    background: linear-gradient(45deg, var(--yellow), var(--pink));
     color: var(--black);
     transform: scale(0.98);
 }
@@ -186,14 +193,14 @@ body {
     width: 130px;
     top: -10px;
     left: 130%;
-    margin-left: -60px; 
+    margin-left: -60px;
     border-radius: 6px;
     background-color: var(--yellow);
     color: var(--black);
     text-align: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1s ease-in; 
+    transition: opacity 1s ease-in;
     z-index: 1;
 }
 
@@ -208,29 +215,31 @@ body {
     border-style: solid;
     border-color: transparent var(--yellow) transparent transparent;
 }
-  
+
 .tooltip:hover .tooltip-content {
     visibility: visible;
     opacity: 1;
 }
 
 /* media queries
-/* small screens */ 
+/* small screens */
 @media (max-width: 650px) {
     .main-div {
         padding: 0 1.5rem;
     }
+
     header {
         padding: 1.8rem 1.3rem 0;
     }
+
     .text-container h2 {
-        font-size: 4.2rem;
+        font-size: 5rem;
+        line-height: 0.8;
     }
-    .text-container p {
-        font-size: 1rem;
-    }    
+
+    .text-container p,
     .text-container button {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 }
 
@@ -239,30 +248,18 @@ body {
     .menu li {
         margin: 1.7rem 0;
     }
+
     .menu li a {
         padding: .6rem;
         font-size: 1rem;
     }
-    .main-div {
-        padding: 0 1.5rem;
-    }
-    header {
-        padding: 1.8rem 1.3rem 0;
-    }
+
     .text-container h2 {
-        font-size: 3rem;
+        font-size: 4rem;
     }
-    .text-container p {
-        font-size: .8rem;
-        margin: .6rem 0 0;
-    }    
-    .text-container button {
-        font-size: .8rem;
-    }
-    .tooltip {
-        margin-top: .8rem;
-    }
+
+    /* hide tooltip */
     .tooltip .tooltip-content {
-        left: 150%;
+        display: none;
     }
 }

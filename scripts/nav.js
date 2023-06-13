@@ -3,7 +3,7 @@
 const menuButton = document.querySelector('.toggle .fas');
 const spill = document.querySelector('.menu');
 
-function toggleNav() { 
+function toggleNav() {
     if (menuButton.classList.contains('fa-bars')) {
         menuButton.classList.replace('fa-bars', 'fa-times');
         menuButton.style.color = "#fff";

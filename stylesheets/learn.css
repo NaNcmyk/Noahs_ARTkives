@@ -5,8 +5,7 @@ body {
 .main-div {
     margin: 2.5rem 3.5rem 0;
     display: grid;
-    grid-template-columns: 4fr 1fr;
-    align-items: flex-start;
+    grid-template-columns: 4fr 2fr;
     height: 100vh;
     gap: 2rem;
     border-radius: 5px;
@@ -28,7 +27,7 @@ body {
     text-align: center;
 }
 
-.main-heading + p {
+.main-heading+p {
     margin-top: 0;
     padding-top: 0;
     color: var(--black);
@@ -42,7 +41,6 @@ body {
     justify-content: center;
     background-color: var(--yellow);
     width: 100%;
-    height: 80%;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
@@ -76,7 +74,7 @@ body {
     align-items: center;
     background-color: var(--yellow);
     border-radius: 8px;
-    height: 80%;
+    padding-block: 1em;
     overflow-y: scroll;
     overflow-x: hidden;
     /* firefox custom scrollbar */
@@ -98,34 +96,30 @@ body {
 }
 
 .video-playlist-wrapper .video-thumbnail {
-    position: relative;
     width: 90%;
-    height: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1em;
     margin: 5px;
-    padding-bottom: 56.25%;
-    padding: 2rem 0;
+    padding-right: 1em;
     background-color: var(--green);
     border-radius: 8px;
     cursor: pointer;
 }
 
 .video-playlist-wrapper .video-thumbnail iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 40%;
-    height: 80%;
-    margin: .5rem;
-    border-radius: 8px;
+    width: 60%;
+    max-width: 100%;
+    max-height: 100%;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 .video-playlist-wrapper .video-thumbnail h3 {
-    position: absolute;
-    top: 30%;
-    left: 45%;
-    margin-left: .8rem;
-    font-size: .7rem;
+    font-size: .8rem;
     font-weight: bold;
+    flex: 1;
 }
 
 /* thumbnail on hover */
@@ -135,8 +129,9 @@ body {
 
 /* active thumbnail */
 .video-playlist-wrapper .video-thumbnail.active {
-    background: linear-gradient(45deg, var(--yellow), var(--pink));    
+    background: linear-gradient(45deg, var(--yellow), var(--pink));
 }
+
 .video-playlist-wrapper .video-thumbnail.active h3 {
     color: var(--black);
 }
@@ -145,7 +140,7 @@ body {
 footer {
     margin-top: 4rem;
     padding: 1rem 0 1.5rem;
-    background: linear-gradient(to top, var(--yellow), var(--pink));    
+    background: linear-gradient(to top, var(--yellow), var(--pink));
     color: var(--black);
     font-family: 'Fredoka One', monospace;
     font-size: .8rem;
@@ -153,9 +148,10 @@ footer {
 }
 
 /* ------------media queries-------------- */
-@media (max-width: 960px) {
+@media (max-width: 900px) {
     .main-div {
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 1fr;
+        grid-template-rows: 4fr 2fr;
     }
 }
 
@@ -163,38 +159,44 @@ footer {
     header {
         padding: 1.8rem 1.3rem .8rem;
     }
+
     .menu li {
         margin: 1.7rem 0;
     }
+
     .menu li a {
         padding: .6rem;
         font-size: 1rem;
     }
+
     .main-div {
-        grid-template-columns: 1fr;
-        gap: 0;
-        padding: 0;
+        /* grid-template-columns: 1fr; */
+        grid-template-rows: 2fr 4fr;
         margin: 0 .5rem;
     }
+
     .main-heading {
         font-size: 3.2rem;
     }
-    .main-heading + p {
+
+    .main-heading+p {
         font-size: .8rem;
     }
+
     .main-div .video-wrapper {
-        height: 150%;
+        height: 145%;
         padding: 1rem 0;
+        margin-top: 1em;
     }
-    .video-wrapper .display-video {
-        height: 100%;
-    }
+
     .video-wrapper .display-video h3 {
         font-size: 1.3rem;
     }
+
     .main-div .video-playlist-wrapper {
         margin-top: 8.5rem;
     }
+
     footer {
         padding: 4rem 0 .8rem;
     }

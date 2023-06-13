@@ -2,23 +2,23 @@ const magicButton = document.querySelector('.landing-page-btn');
 const blendmodeBtn = document.querySelector('.fa-mortar-pestle');
 const pawBtn = document.querySelector('.fa-paw');
 const eraseBtn = document.querySelector('.fa-eraser');
-const saveBtn = document.querySelector('.fa-download'); 
+const saveBtn = document.querySelector('.fa-download');
 
 const colors = [
     'color',
-    'color-burn', 
-    'color-dodge', 
-    'darken', 
-    'difference', 
-    'exclusion', 
-    'hard-light', 
-    'hue', 
-    'lighten', 
-    'luminosity', 
-    'multiply', 
-    'overlay', 
-    'saturation', 
-    'screen', 
+    'color-burn',
+    'color-dodge',
+    'darken',
+    'difference',
+    'exclusion',
+    'hard-light',
+    'hue',
+    'lighten',
+    'luminosity',
+    'multiply',
+    'overlay',
+    'saturation',
+    'screen',
     'soft-light',
     'source-over'
 ];
@@ -64,7 +64,7 @@ function blurBackground() {
     toolbox.classList.add('active');
 }
 
-// change cursor based on user interaction with canvas 
+// change cursor based on user interaction with canvas
 function changeCursor() {
     const header = document.querySelector('.main-wrapper header');
 
@@ -75,9 +75,9 @@ function changeCursor() {
         }
         // hide header (to prevent it from getting in the way while stamping/painting)
         header.style.display = 'none';
-        // if pointerdown/pointermove detected on canvas 
+        // if pointerdown/pointermove detected on canvas
         return document.body.style.cursor = "url(/assets/make/paint-brush.png), crosshair";
-        // defaults to crosshair on hover over canvas (unless stamp is turned on or pointerdown/pointermove detected on canvas) 
+        // defaults to crosshair on hover over canvas (unless stamp is turned on or pointerdown/pointermove detected on canvas)
     } else {
         // show header
         header.style.display = 'flex';
@@ -103,13 +103,13 @@ function draw(e) {
     ctx.stroke();
     // update x and y coords
     [lastX, lastY] = [e.offsetX, e.offsetY];
-    
-    // adjust hue, loop back to beginning of color wheel when value reaches full circle (360) 
+
+    // adjust hue, loop back to beginning of color wheel when value reaches full circle (360)
     hue++;
     if (hue >= 360) {
         hue = 0;
     }
-    
+
     // restrict line width to be between 1-70
     if (ctx.lineWidth >= 70 || ctx.lineWidth <= 1) {
         resetLineWidth = !resetLineWidth;
@@ -117,10 +117,11 @@ function draw(e) {
     // increment if under 70
     if (resetLineWidth) {
         ctx.lineWidth++;
-    // decrement when line width reaches 70
+        // decrement when line width reaches 70
     } else {
         ctx.lineWidth--;
     }
+
 }
 
 // stamp paw prints on canvas
@@ -133,27 +134,27 @@ function stampPaw() {
     changeCursor();
 
     canvas.addEventListener('click', (e) => {
-        // save x + y click coordinates 
+        // save x + y click coordinates
         const x = e.clientX;
         const y = e.clientY;
-        
+
         if (pawBtn.classList.contains('active')) {
             // update tooltip text
             pawBtn.setAttribute('data-bs-original-title', 'pause paws');
-                        
+
             // draw paw
             let img = new Image();
             img.onload = () => ctx.drawImage(img, e.clientX, e.clientY);
             img.src = '/assets/make/paw.png';
-            
+
             // change stamp color
             changeStampColor();
             let animatedPawColor = changeStampColor();
 
             // trigger paw animation
             pawsify(x, y, animatedPawColor);
-            
-        // if paw button is not active...
+
+            // if paw button is not active...
         } else {
             // update tooltip text
             pawBtn.setAttribute('data-bs-original-title', 'make your mark');
@@ -180,17 +181,17 @@ function changeStampColor() {
     // get color data of image
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let data = imageData.data;
-    
+
     // loop through image data, replace current pixels with new pixel values
     for (let i = 0; i < data.length; i += 4) {
         let r = data[i], g = data[i + 1], b = data[i + 2];
-        
+
         // pixel values for original image is black: rgb(0, 0, 0)
         if (r == 0 && g == 0 && b == 0) {
             data[i] = newColor['r'];
             data[i + 1] = newColor['g'];
             data[i + 2] = newColor['b'];
-        } 
+        }
     }
     // set blend mode for canvas + reset selection in blend mode modal
     // source-over draws new shapes on top of existing canvas content
@@ -209,14 +210,14 @@ function pawsify(x, y, color) {
     pawPrint.classList.add('fas');
     pawPrint.classList.add('fa-paw');
     pawPrint.id = 'pawsify';
-    
+
     // set position of animation
     pawPrint.style.left = `${x}px`;
     pawPrint.style.top = `${y}px`;
-    
+
     // set color of animation
     pawPrint.style.color = color;
-    
+
     // append paw print elements to DOM
     document.body.appendChild(pawPrint);
 }
@@ -226,7 +227,7 @@ function toggleBlendModeModal() {
     // create divs
     const outerBlendModeDiv = document.createElement('div');
     const innerBlendModeDiv = document.createElement('div');
-    
+
     // add divs to DOM
     outerBlendModeDiv.appendChild(innerBlendModeDiv);
     document.body.appendChild(outerBlendModeDiv);
@@ -235,7 +236,7 @@ function toggleBlendModeModal() {
     innerBlendModeDiv.id = 'blendmode-modal';
     blendmodeBtn.classList.add('active');
     outerBlendModeDiv.classList.add('blendmode-modal-backdrop', 'active');
-    
+
     // create blend mode list inside inner blend mode modal
     // .map function saves the HTML for each list item group as a separate string in a new array, .join merges all list item groups into one unified string to display as proper HTML 
     innerBlendModeDiv.innerHTML = colors.map(color => {
@@ -252,7 +253,7 @@ function toggleBlendModeModal() {
     // return to canvas if user clicks outside of blend mode modal
     const modalBackdrop = document.querySelector('.blendmode-modal-backdrop');
     modalBackdrop.addEventListener('click', evt => {
-        if (evt.target !== evt.currentTarget) return; 
+        if (evt.target !== evt.currentTarget) return;
         isBlending = false;
         changeCursor();
         blendmodeBtn.classList.remove("active");
@@ -271,14 +272,14 @@ function changeBlendMode() {
     // update flag/cursor
     isBlending = true;
     changeCursor();
-    
+
     // set blend mode value to user input + record selection
     inputs.forEach(input => {
         input.addEventListener('change', e => {
             ctx.globalCompositeOperation = e.target.value;
             selectedBlendMode = input.value;
         });
-    }); 
+    });
     return ctx.globalCompositeOperation;
 }
 
@@ -319,19 +320,16 @@ canvas.addEventListener('pointerdown', e => {
 
 canvas.addEventListener('pointermove', draw);
 
-canvas.addEventListener('pointerup', () => {
-    isDrawing = false;
-    changeCursor();
-});
-
 canvas.addEventListener('pointerleave', () => {
     isDrawing = false;
     changeCursor();
 });
 
-// window 
+// window
 // display warning message to users when they navigate away from canvas (only if it has been drawn on)
 canvas.addEventListener('pointerup', () => {
+    isDrawing = false;
+    changeCursor();
     window.addEventListener('beforeunload', e => {
         e.preventDefault();
         // custom message if browser does not display default prompt

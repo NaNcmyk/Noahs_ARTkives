@@ -7,7 +7,7 @@ function clearActive() {
 }
 
 thumbnails.forEach(thumbnail => {
-    thumbnail.addEventListener('click', () => { 
+    thumbnail.addEventListener('click', () => {
         clearActive();
         thumbnail.classList.add('active');
         if (thumbnail.classList.contains('active')) {

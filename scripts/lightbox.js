@@ -11,7 +11,7 @@ const artists = [
             youtube: "https://www.youtube.com/watch?v=wTvM-dfm4Ks",
             tiktok: null
         }
-    }, 
+    },
     {
         artist: "Bini",
         photo: "assets/see/bini.jpg",
@@ -165,7 +165,7 @@ const artists = [
             instagram: "https://www.instagram.com/elephantartonline/",
             twitter: "https://twitter.com/elephantartcm",
             youtube: "https://www.youtube.com/channel/UCUt_sIMjW7ma_T9jIJ6cmPQ",
-            tiktok: null 
+            tiktok: null
         }
     },
     {
@@ -244,7 +244,7 @@ imageContainers.forEach((container) => {
                 };
                 // filtered array of only the properties that contain a URL
                 const filteredChannelsArr = mediaChannels.filter(channelName => artist["links"][channelName] !== null);
-                
+
                 // dynamically generate variables w/map to create font awesome icons and anchor tags
                 let iconVars = new Map();
                 let anchorVars = new Map();
@@ -262,7 +262,7 @@ imageContainers.forEach((container) => {
                     let iconValue = new Map();
                     iconValue.set("i", document.createElement("i"));
                     iconVars.set(iconVar, iconValue);
-                    
+
                     // store DOM elements & font awesome classes in own variable for readability
                     let iconEl = iconVars.get(channel).get("i");
                     let anchorEl = anchorVars.get(anchorVarName).get("a");
@@ -270,7 +270,7 @@ imageContainers.forEach((container) => {
                     let faSecondClass = fontAwesomeClasses[channel][1];
 
                     // add font awesome classes
-                    iconEl.classList.add(faFirstClass, faSecondClass); 
+                    iconEl.classList.add(faFirstClass, faSecondClass);
                     // set href attribute
                     anchorEl.setAttribute("href", artist["links"][channel]);
                     // set target attribute
@@ -289,7 +289,7 @@ imageContainers.forEach((container) => {
         }
         // add image + artist name + social media div to lightbox
         lightbox.append(lightboxImg, artistName, socialMediaDiv);
-    }); 
+    });
 });
 
 // exit lightbox

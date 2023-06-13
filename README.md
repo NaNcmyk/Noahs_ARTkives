@@ -57,12 +57,12 @@ In case the user gets lost on the website... And for extra UX brownie points. Fo
 
     + The image gallery was created using Bootstrap 5's grid layout. 
     
-    + Hover over each painting to reveal its title and year. A Bootstrap 5-styled tooltip will prompt the user to click on the title for information about the artist. 
-    
+    + Hover over each painting to reveal its title and year. A Bootstrap 5-styled tooltip will prompt the user to click on the title for information about the artist.
+
     + Clicking the title will open up a JavaScript-generated lightbox that displays a photo of the artist--surprise! An animal made this!--as well as display the artist's name and any available links to its website, Wikipedia page, and social media. These external links have all been configured to open in a separate tab.
 
 1. 📺 **_learn.html_**
-    
+
     This is the _Video ARTkives_ page, which can be accessed via the "learn" button on the navigation menu of each page.
 
     + Embedded `<iframe></iframe>` make up the bulk of this page. Users can watch YouTube clips of the artists in action via a curated playlist. Scroll through the playlist (look right) to select a different clip to display on the main player (to the left).
@@ -72,24 +72,26 @@ In case the user gets lost on the website... And for extra UX brownie points. Fo
     + Notice the video title (under the main display) will update to reflect the current selection.
 
 1. 🎨 **_make.html_**
-    
+
     This page--the grand finale!--accessible via the "make" button on the navigation menu of each page, is best viewed on a larger screen (though it is mobile responsive). Here, users can have their own [_Harold and the Purple Crayon_](https://en.wikipedia.org/wiki/Harold_and_the_Purple_Crayon) moment and paint a masterpiece of their own making!
 
     + To access the canvas, the user must click the _stART_ button on the landing page. Doing so will blur the landing page's background image (an empty white room) to _even whiter_ whiteness, ultimately unveiling the tabula rasa, upon which the user will be tasked with coloring. This (seemingly interloping) landing page simply serves as a way to build up excitement and add an element of suspense to the website's climax.
- 
-    + A note on cursors: 
+
+    + A note on cursors:
 
         + When the landing page's background image completely disappears and the toolbar fades in to view, the crosshair cursor will ✨ _magically_ ✨ appear to indicate that the canvas is ready .
 
         + Notice when color is applied to the canvas (with a mouse), the cursor will change to a paintbrush.
 
-    + The logo and menu toggle at the top of the page are both invisible to make full use of screen real estate. They are acccessible on hover as needed when not in stamping or painting mode. You'll see a frosty gray band when you hover over the top edge of the page.
+    + The logo and menu toggle at the top of the page are both invisible to make full use of screen real estate. For mouse users, these are acccessible on hover as needed when not in stamping or painting mode. You'll see a frosty gray band when you hover over the top edge of the page.
+
+      + Touchscreen users, I will need to figure out a solution to reveal the hidden menu bar. E.g., maybe add a question mark icon on the tool bar that the user can tap to unhide the menu bar. For now, you can simply hit the browser's back button to navigate away from the *make.html* page.
 
     + As for the artist toolkit... On big and medium screens, the tool bar is located on the left-hand side of the screen, and on mobile screens, it's fixed to the bottom. It contains four clickable Font Awesome icon buttons. Bootstrap-styled tooltips explain the function of each.
 
         + **Brush/stroke sizes and color palette** - These are all predetermined (i.e., dynamically calculated in _paint.js_), so cannot be changed by the user. The painted line changes color and width as the user moves from one point of the canvas to another. This, in effect, results in fluid, ebbing and flowing rainbow-colored gradient lines, since the lines do not have static width or color values. This particular idea was inspired by [day 8 of Wes Bos's #JavaScript30](https://youtu.be/8ZGAzJ0drl0).
 
-        + **Make your (paw) mark stamp** (animal paw print icon) - This button allow users to stamp a paw print to the canvas. The color of the stamp is generated randomly by behind-the-scenes JavaScript wizardry in _paint.js_--users have no control over the color. 
+        + **Make your (paw) mark stamp** (animal paw print icon) - This button allow users to stamp a paw print to the canvas. The color of the stamp is generated randomly by behind-the-scenes JavaScript wizardry in _paint.js_--users have no control over the color.
 
             + Notice what happens when you are stamping. (No, you're not experiencing double vision!) You will see a (also randomly colored) brief flash of a fading paw when the paw is stamped to the canvas (i.e., in JavaScript terms: when a pointerdown event is detected on the canvas).
 
@@ -97,17 +99,28 @@ In case the user gets lost on the website... And for extra UX brownie points. Fo
 
             + Pro tip: Toggle the stamp on/off by clicking the mortar and pestle icon. Turn off the stamp if you want to switch to a different blend mode while painting. Otherwise, the color of the brush will default to the stamp's "source-over" blend mode--i.e., the `globalCompositeOperation` property of the Canvas 2D API that enables the stamp color to be superimposed over the canvas's existing content, as opposed to underneath or blended in with it. (Basically, you know the stamp is off if the button is black.)
 
-        + **Blend Mode button** (mortar and pestle icon) - This is Noah's ARTkives's (more creative!) alternative to the standard color picker. Regardless of which blend mode the user selects, the brush color will always be rainbow-colored. The blend mode alters the appearance (hue, saturation, lightness/darkness) of those colors when they overlap. Read more about blend modes [here](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation) on MDN. 
+        + **Blend Mode button** (mortar and pestle icon) - This is Noah's ARTkives's (more creative!) alternative to the standard color picker. Regardless of which blend mode the user selects, the brush color will always be rainbow-colored. The blend mode alters the appearance (hue, saturation, lightness/darkness) of those colors when they overlap. Read more about blend modes [here](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation) on MDN.
 
             + ⚠️ _As mentioned above, while in painting mode, make sure the stamp is turned off when switching the brush blend mode. Otherwise, the selected blend mode will revert to the stamp's default "source-over" blend mode._
 
             + Notice the custom radio "check" mark: It's a pig snout emoji! (🐽 Oink.)
 
         + **Erase button** (eraser icon) - Dear perfectionists, [since we don't make mistakes, we have happy accidents](https://youtu.be/wCsO56kWwTc), erasing select areas of the canvas that have already been painted on is not an option. But you do have the option to clear the entire canvas and start afresh. You can't remove paint already applied to a real (not-digital) canvas, _right?_ Same rationale applies here.
-    
+
         + **Download button** (download icon) - This button allows users to download their masterpieces. Downloads will save as "your_masterpiece.png" on the user's local machine. Once users navigate away from the canvas page, any unsaved work from the session will be permanently lost. The browser will display a warning message to confirm if the user, in fact, wants to abandon their unsaved work--just in case. (Navigating away from the landing page or a canvas that has not received any interaction will not trigger the alert.)
 
         + **Browser extension button** (puzzle icon) - Clicking the icon will direct users to the [artXtension GitHub repo](https://github.com/NaNcmyk/artXtension), which contains all the necessary files required to manually install the browser extension--instead of directly to the Chrome Web Store page (since this extension is still in beta).
+
+        + **Example output** 😎:
+
+        <br>
+
+        ![masterpiece #1](masterpiece_1.png)
+
+        ![masterpiece #2](masterpiece_2.png)
+
+        ![masterpiece #2](masterpiece_3.png)
+
 ---
 #### **ASSETS**
 This subdirectory includes all _.mp4_, _.jpg_, _.png_, _.svg_ media files used by the website.

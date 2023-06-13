@@ -107,7 +107,7 @@ In case the user gets lost on the website... And for extra UX brownie points. Fo
     
         + **Download button** (download icon) - This button allows users to download their masterpieces. Downloads will save as "your_masterpiece.png" on the user's local machine. Once users navigate away from the canvas page, any unsaved work from the session will be permanently lost. The browser will display a warning message to confirm if the user, in fact, wants to abandon their unsaved work--just in case. (Navigating away from the landing page or a canvas that has not received any interaction will not trigger the alert.)
 
-        + **Browser extension button** (puzzle icon) - Clicking the icon will download an "artXtension.zip" file that contains all the necessary files required to manually install the browser extension in developer mode on your own computer. Since this extension is still in beta, it is only accessible via an external link. (Otherwise, this link would take you directly to the Chrome Web Store page.)
+        + **Browser extension button** (puzzle icon) - Clicking the icon will direct users to the [artXtension GitHub repo](https://github.com/NaNcmyk/artXtension), which contains all the necessary files required to manually install the browser extension--instead of directly to the Chrome Web Store page (since this extension is still in beta).
 ---
 #### **ASSETS**
 This subdirectory includes all _.mp4_, _.jpg_, _.png_, _.svg_ media files used by the website.

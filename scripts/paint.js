@@ -1,3 +1,5 @@
+import { data, getData, getFileName } from './animal_puns.js';
+
 const magicButton = document.querySelector('.landing-page-btn');
 const blendmodeBtn = document.querySelector('.fa-mortar-pestle');
 const pawBtn = document.querySelector('.fa-paw');
@@ -291,12 +293,18 @@ function clearCanvas() {
 // export canvas
 function exportImg() {
     const link = document.createElement('a');
-    // name download file
-    link.download = 'your_masterpiece.png';
-    // temp href to store canvas URL (base64 img string)
-    link.href = canvas.toDataURL();
-    link.click();
-    link.delete;
+
+    // async function imported from animal_puns.js
+    // fetches data from artists.json
+    getData().then(() => {
+        // calls getFileName when data from artists.json is ready, to get random file name
+        // names download file with name returned by getFileName
+        link.download = getFileName(data);
+        // temp href to store canvas URL (base64 img string)
+        link.href = canvas.toDataURL();
+        link.click();
+        link.delete;
+    });
 }
 
 // event listeners---------------------------------------
@@ -336,9 +344,3 @@ canvas.addEventListener('pointerup', () => {
         e.returnValue = 'Hey there, you are about to navigate away from this page. Are you PAWsitively sure you wanna leave? You will lose any unsaved work.';
     });
 });
-
-
-
-
-
-

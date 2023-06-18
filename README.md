@@ -32,9 +32,14 @@ The **_project_** (root) directory contains the following:
         + **_index_** - 4 files
         + **_see_** - 36 files
         + **_make_** - 3 files
-    1. **_scripts_** - 5 files
+    1. **_scripts_** - 7 files
     1. **_stylesheets_** - 5 files
-+ a README.md (a.k.a. this file you are reading right now)
++ one **.json** file - **artists.json** 
++ a **README.md** (a.k.a. this file you are reading right now) & its 4 accompanying image files:
+    + **_downloadFolderScreenshot.png_**
+    + **_a_yakson_pollock_original.png_**
+    + **_a_marcel_dushrimp_original.png_**  
+    + **_a_leonardo_da_finchi_original.png_**
 
 👇👇 Read on for a detailed explanation of each. 👇👇
 
@@ -48,7 +53,7 @@ In case the user gets lost on the website... And for extra UX brownie points. Fo
     This is the homepage. 
 
     + Clicking the "scribble" logo (shakes on hover! 😉) located on the top-left corner of every page will bring the user back to this main page.
-        
+
     + If the user is already on the homepage, however, clicking on the logo won't do anything. Instead! An Easter egg is planted behind the logo. Hover over it to see what happens... 👾
 
 1. 👁️‍🗨️ **_see.html_**
@@ -107,7 +112,12 @@ In case the user gets lost on the website... And for extra UX brownie points. Fo
 
         + **Erase button** (eraser icon) - Dear perfectionists, [since we don't make mistakes, we have happy accidents](https://youtu.be/wCsO56kWwTc), erasing select areas of the canvas that have already been painted on is not an option. But you do have the option to clear the entire canvas and start afresh. You can't remove paint already applied to a real (not-digital) canvas, _right?_ Same rationale applies here.
 
-        + **Download button** (download icon) - This button allows users to download their masterpieces. Downloads will save as "your_masterpiece.png" on the user's local machine. Once users navigate away from the canvas page, any unsaved work from the session will be permanently lost. The browser will display a warning message to confirm if the user, in fact, wants to abandon their unsaved work--just in case. (Navigating away from the landing page or a canvas that has not received any interaction will not trigger the alert.)
+        + **Download button** (download icon) - This button allows users to download their masterpieces on to their local machine.
+            + The default file name is a randomly selected animal pun artist name from **_artists.json_**:
+
+                ![screenshot of download folder](downloadFolderScreenshot.png)
+
+            + ⚠️ Once users navigate away from the canvas page, any unsaved work from the session will be permanently lost. The browser will display a warning message to confirm if the user, in fact, wants to abandon their unsaved work--just in case. (Navigating away from the landing page or a canvas that has not received any interaction will not trigger the alert.)
 
         + **Browser extension button** (puzzle icon) - Clicking the icon will direct users to the [artXtension GitHub repo](https://github.com/NaNcmyk/artXtension), which contains all the necessary files required to manually install the browser extension--instead of directly to the Chrome Web Store page (since this extension is still in beta).
 
@@ -115,11 +125,11 @@ In case the user gets lost on the website... And for extra UX brownie points. Fo
 
         <br>
 
-        ![masterpiece #1](masterpiece_1.png)
+        ![masterpiece #1](a_yakson_pollock_original.png)
 
-        ![masterpiece #2](masterpiece_2.png)
+        ![masterpiece #2](a_marcel_dushrimp_original.png)
 
-        ![masterpiece #2](masterpiece_3.png)
+        ![masterpiece #3](a_leonardo_da_finchi_original.png)
 
 ---
 #### **ASSETS**
@@ -248,7 +258,33 @@ In `<link>` tag order, in the `<head>` section of the _.html_ pages:
 
    The "maverick" behavior of `<iframe></iframe>` was taken into account when writing this script. Iframes, which are essentially nested html documents within the main html document, have their own internal DOM strucure that can conflict with the external DOM of its parent page. In order for the browser's back button to behave as expected--that is, display a separate page that the user previously viewed on the website--an "intervention", so to speak, had to be put in place to prevent the browser from (unintentionally) backtracking through the user's playlist history within the current page (inside the YouTube player) when the main page's back button is clicked.
 
+1. 🦓 **_animal_puns.js_** (and **_artists.json_**)  
+
+    Note, the `type="module"` in the `<script>` tag. We will need to export three things from this file for **_paint.js_**'s `exportImg` function:  
+
+   --> 1. the `data` variable  
+   --> 2. the `getData` function  
+   --> 3. and the `getFileName` function  
+
+    This script is responsible for fetching a random animal pun artist name from **_artists.json_**, and then reformatting it as a file name for the _.png_ that users can download from the **_make.html_** page--if they choose to save a copy of their artwork.
+
+    The majority of the *animal names* in **artists.json** were taken from [Ahhabrand's Zooseum](https://www.ahhabrands.com/collections/zooseum/). I compiled the punny names into a *.csv* file, and then used [Online CSV Tools](https://onlinecsvtools.com/convert-csv-to-json) to turn it into JSON. 
+
+    I may have made this more complicated than it needed to be--this is such a tiny detail--but! it was good practice of `async`, `await`, `fetch`, and working with JSON data... In the original project, the default file name for the download was simply, _your_masterpiece.png_. But that was *sooo 2021*, I was compelled to elevate this a bit for 2023. This is ART, after all 😉
+
+    --> `data` - A global reference to the data is necessary if we want to use it in a separate script, without having to go through the process of fetching the data and awaiting the response from the `fetch`. This variable is initialized as an empty string, but once the JSON data is ready, its value is updated by `getData`.  
+    --> `getFileName` - The function is responsible for converting JSON data into a formatted string:  
+      + forces string to lowercase
+      + removes dashes & special characters--e.g., apostrophes--where needed
+      + and adds underscores between words  
+
+      It returns the final version of the file name: *[a || an]_[formatted animal pun artist name]_original.png*. If, for whatever reason, there is an issue with the data passed in, the fallback file name will be: *a_pigcasso_original.png*.  
+
+    --> `getData` -  This is an `async` function that fetches data from **_artists.json_**. Once the data is ready, it then passes it to `getFileName` for processing.   
+
 1. 🎨 **_paint.js_**
+
+    Note, the `type="module"` in the `<script>` tag, as we will need to import the three above-mentioned dependencies from **_animal_puns.js_**.
     
     This script powers the mighty painting app of _make.html_. This program was written to respond to both mouse and touch events by listening to pointer events--which now have [full cross-browser support](https://caniuse.com/?search=pointermove) (including IE 11 🎉). The various features of this program have been separated into 10 different functions based on their specific functionality:
 
@@ -270,7 +306,9 @@ In `<link>` tag order, in the `<head>` section of the _.html_ pages:
 
     + `clearCanvas()` - When the eraser button is clicked, this function clears the canvas.
 
-    + `exportImg()` - When the download button is clicked, this function enables the user to download their painted masterpiece.
+    + `exportImg()` - When the download button is clicked, this function enables the user to download their painted masterpiece.  
+        + `data`, `getData`, and `getFileName` are imported from **_animal_puns.js_** to generate the file name for the download. Because `getData` returns a `promise`--and not the string return value from `getFileName`--the only way to get the file name--which depends on the data from `getData`--is from within `getData`. This requires chaining a `.then` to `getData` and then passing in `getFileName` as a callback with `data` as an argument. Ultimately, it is from within `getData` that `getFileName`'s return value is assigned as the name for the download. 
+        + ⚠️ If `getFileName` is called with `data` outside of `getData`, the value of `data` will be an empty string. `getFileName` has been designed to still return a fallback file name in such cases--the name just won't be selected from **_artists.json_**. 
 
     Note, at the very end of the script, an event listener for a `beforeunload` event is added to the window to let users know that they are about to navigate away from the page, and in doing so, they will lose any unsaved work. This gives users the opportunity, in case of user error, to download their work before abandoning the page. Wrapping the window's `beforeunload` event listener within the canvas's `pointerdown` event listener ensures that the warning only displays if the user has interacted with the page somehow--in other words, the display message will not be triggered if users simply hit the back button on the canvas page without actually drawing something on it (in which case there would be nothing to save anyway), nor will leaving the landing page without clicking the "stART" button trigger the alert.
 

@@ -19,7 +19,7 @@ Bonus feature: Take your painting adventures to a whole new level with--*drum ro
 ---
 ### **PROJECT FILE STRUCTURE**
 
-The **_project_** (root) directory contains the following:
+The root directory contains the following:
 
 + **_.html_** files (4 total)
     1. 🐷 **_index.html_**
@@ -44,7 +44,7 @@ The **_project_** (root) directory contains the following:
 👇👇 Read on for a detailed explanation of each. 👇👇
 
 ---
-#### **ROOT DIRECTORY (HTML files)**
+#### **HTML FILES**
 
 In case the user gets lost on the website... And for extra UX brownie points. For all pages, except the homepage, the link button that corresponds to the page that the user is currently viewing is styled slightly differently in the navigation menu. Notice, this button also has a "📍 you are here" Bootstrap-styled tooltip to let users know where they currently are on the website as they look to navigate elsewhere. 
 
